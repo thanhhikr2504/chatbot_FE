@@ -3,16 +3,12 @@ import { ChangeDetectionStrategy, Component, DestroyRef, inject, signal } from '
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { ErrorStateMatcher } from '@angular/material/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 import { AuthService } from '../../../core/auth/auth.service';
-import { dirtyOrSubmittedErrorStateMatcher } from '../../../core/forms/error-state.matcher';
 
 @Component({
   selector: 'app-login',
@@ -22,15 +18,12 @@ import { dirtyOrSubmittedErrorStateMatcher } from '../../../core/forms/error-sta
     CommonModule,
     ReactiveFormsModule,
     RouterLink,
-    MatFormFieldModule,
-    MatInputModule,
     MatButtonModule,
     MatIconModule,
     MatProgressSpinnerModule
   ],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss',
-  providers: [{ provide: ErrorStateMatcher, useValue: dirtyOrSubmittedErrorStateMatcher }]
+  styleUrl: './login.component.scss'
 })
 export class LoginComponent {
   private readonly fb = inject(FormBuilder);
@@ -39,7 +32,6 @@ export class LoginComponent {
   private readonly route = inject(ActivatedRoute);
   private readonly destroyRef = inject(DestroyRef);
 
-  readonly errorMatcher = dirtyOrSubmittedErrorStateMatcher;
   readonly hidePassword = signal(true);
   readonly loading = signal(false);
   readonly submitted = signal(false);
@@ -52,6 +44,18 @@ export class LoginComponent {
 
   togglePassword(): void {
     this.hidePassword.update((v) => !v);
+  }
+
+  hasError(controlName: 'email' | 'password', errorType: string): boolean {
+    const ctrl = this.form.controls[controlName];
+    if (!ctrl.hasError(errorType)) return false;
+    return ctrl.dirty || ctrl.touched || this.submitted();
+  }
+
+  isFieldInvalid(controlName: 'email' | 'password'): boolean {
+    const ctrl = this.form.controls[controlName];
+    if (!ctrl.invalid) return false;
+    return ctrl.dirty || ctrl.touched || this.submitted();
   }
 
   submit(): void {

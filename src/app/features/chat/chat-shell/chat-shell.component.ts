@@ -17,11 +17,11 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
-import { AuthService } from '../../core/auth/auth.service';
-import { SignalRService } from '../../core/signalr/signalr.service';
-import { ChatStore } from './store/chat.store';
-import { ConversationListComponent } from './conversation-list/conversation-list.component';
-import { ChatWindowComponent } from './chat-window/chat-window.component';
+import { AuthService } from '../../../core/auth/auth.service';
+import { SignalRService } from '../../../core/signalr/signalr.service';
+import { ChatStore } from '../store/chat.store';
+import { ConversationListComponent } from '../conversation-list/conversation-list.component';
+import { ChatWindowComponent } from '../chat-window/chat-window.component';
 
 @Component({
   selector: 'app-chat-shell',

@@ -14,7 +14,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { routes } from './app.routes';
-import { AuthInterceptor } from './core/auth/auth.interceptor';
+import { AuthInterceptor } from '../core/auth/auth.interceptor';
 
 class GlobalErrorHandler implements ErrorHandler {
   private snackBar = inject(MatSnackBar);
