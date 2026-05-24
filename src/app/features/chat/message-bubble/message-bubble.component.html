@@ -1,0 +1,38 @@
+<div class="bubble-row" [class.is-user]="isUser" [class.is-assistant]="!isUser">
+  <div class="avatar" [class.user]="isUser">
+    <mat-icon>{{ isUser ? 'person' : 'smart_toy' }}</mat-icon>
+  </div>
+
+  <div class="bubble-wrap">
+    <div
+      class="bubble"
+      [class.user]="isUser"
+      [class.assistant]="!isUser"
+      [matTooltip]="message.createdAt | date: 'medium'"
+      matTooltipPosition="above"
+    >
+      @if (isUser) {
+        <div class="user-content">{{ message.content }}</div>
+      } @else {
+        <app-markdown-renderer [content]="message.content" />
+        @if (streaming) {
+          <span class="streaming-cursor">▍</span>
+        }
+      }
+    </div>
+
+    @if (!isUser && !streaming) {
+      <div class="bubble-actions">
+        <button
+          mat-icon-button
+          class="copy-btn"
+          (click)="copy()"
+          [attr.aria-label]="copied() ? 'Đã sao chép' : 'Sao chép'"
+          [matTooltip]="copied() ? 'Đã sao chép' : 'Sao chép'"
+        >
+          <mat-icon>{{ copied() ? 'check' : 'content_copy' }}</mat-icon>
+        </button>
+      </div>
+    }
+  </div>
+</div>

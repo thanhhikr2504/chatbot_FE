@@ -1,0 +1,128 @@
+:host {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+}
+
+.auth-shell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 1.5rem;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(127, 119, 221, 0.15), transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(127, 119, 221, 0.08), transparent 40%),
+    #0f1117;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 420px;
+  background: #13151f;
+  border: 1px solid #1e2130;
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.auth-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+  text-align: center;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.brand-icon {
+  color: #7f77dd;
+  font-size: 2rem;
+  width: 2rem;
+  height: 2rem;
+}
+
+.brand-name {
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: #e2e8f0;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #e2e8f0;
+  margin: 0;
+}
+
+.subtitle {
+  color: #8892a4;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.error-banner {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 0.875rem;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 8px;
+  color: #fca5a5;
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+
+  mat-icon {
+    font-size: 1.125rem;
+    width: 1.125rem;
+    height: 1.125rem;
+  }
+}
+
+.submit-btn {
+  height: 48px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-radius: 10px !important;
+  margin-top: 0.5rem;
+
+  mat-spinner ::ng-deep circle {
+    stroke: #fff;
+  }
+}
+
+.auth-footer {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: #8892a4;
+  padding-top: 0.5rem;
+  border-top: 1px solid #1e2130;
+}
+
+.link {
+  color: #9089e8;
+  font-weight: 600;
+  text-decoration: none;
+
+  &:hover {
+    color: #b3aef0;
+    text-decoration: underline;
+  }
+}

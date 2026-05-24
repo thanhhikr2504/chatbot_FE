@@ -1,0 +1,51 @@
+<div class="conv-list">
+  <div class="conv-header">
+    <button mat-flat-button class="new-chat-btn" (click)="newChat.emit()">
+      <mat-icon>add</mat-icon>
+      <span>Cuộc trò chuyện mới</span>
+    </button>
+  </div>
+
+  <div class="conv-items" role="list">
+    @if (loading && conversations.length === 0) {
+      @for (item of skeletonItems; track $index) {
+        <div class="conv-skeleton">
+          <div class="skel-line skel-line-1"></div>
+          <div class="skel-line skel-line-2"></div>
+        </div>
+      }
+    } @else if (conversations.length === 0) {
+      <div class="conv-empty">
+        <mat-icon>chat_bubble_outline</mat-icon>
+        <p>Chưa có hội thoại nào</p>
+        <p class="hint">Nhấn "Cuộc trò chuyện mới" để bắt đầu</p>
+      </div>
+    } @else {
+      @for (conv of conversations; track trackById($index, conv)) {
+        <div
+          class="conv-item"
+          matRipple
+          role="listitem"
+          [class.active]="conv.id === activeId"
+          (click)="onSelect(conv.id)"
+          (keyup.enter)="onSelect(conv.id)"
+          tabindex="0"
+        >
+          <mat-icon class="conv-icon">chat</mat-icon>
+          <div class="conv-text">
+            <div class="conv-title">{{ conv.title || 'Hội thoại mới' }}</div>
+            <div class="conv-time">{{ conv.updatedAt | timeAgo }}</div>
+          </div>
+          <button
+            mat-icon-button
+            class="conv-delete"
+            (click)="onDelete($event, conv.id)"
+            aria-label="Xoá hội thoại"
+          >
+            <mat-icon>delete_outline</mat-icon>
+          </button>
+        </div>
+      }
+    }
+  </div>
+</div>

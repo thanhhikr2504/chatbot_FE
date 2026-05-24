@@ -1,0 +1,43 @@
+<div class="chat-window">
+  @if (!store.activeConversationId() && !store.isLoadingMessages()) {
+    <div class="empty-state">
+      <div class="empty-icon">
+        <mat-icon>smart_toy</mat-icon>
+      </div>
+      <h2>Bắt đầu cuộc trò chuyện</h2>
+      <p>Chọn một hội thoại có sẵn hoặc tạo mới để bắt đầu chat với AI.</p>
+      <button mat-flat-button color="primary" class="empty-cta" (click)="startNewChat()">
+        <mat-icon>add</mat-icon>
+        <span>Cuộc trò chuyện mới</span>
+      </button>
+    </div>
+  } @else {
+    <div #scrollContainer class="messages-scroll" (scroll)="onScroll($event)">
+      <div class="messages-list">
+        @if (store.isLoadingMessages() && store.sortedMessages().length === 0) {
+          @for (item of skeletonItems; track $index) {
+            <div class="msg-skeleton" [class.right]="$index % 2 === 0">
+              <div class="skel-bubble">
+                <div class="skel-line" style="width: 80%"></div>
+                <div class="skel-line" style="width: 60%"></div>
+                <div class="skel-line" style="width: 40%"></div>
+              </div>
+            </div>
+          }
+        } @else {
+          @for (msg of store.sortedMessages(); track trackById($index, msg)) {
+            <app-message-bubble [message]="msg" />
+          }
+
+          @if (store.isStreaming() && store.streamingContent()) {
+            <app-message-bubble [message]="streamingMessage()" [streaming]="true" />
+          }
+        }
+      </div>
+    </div>
+
+    <div class="input-container">
+      <app-message-input [streaming]="store.isStreaming()" (send)="send($event)" />
+    </div>
+  }
+</div>

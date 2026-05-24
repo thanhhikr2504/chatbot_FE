@@ -1,0 +1,142 @@
+:host {
+  display: flex;
+  flex: 1 1 auto;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+}
+
+.chat-window {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  width: 100%;
+  min-height: 0;
+  background: #0f1117;
+}
+
+.messages-scroll {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  min-height: 0;
+  scrollbar-width: thin;
+  scrollbar-color: #2a2e44 transparent;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #2a2e44;
+    border-radius: 4px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
+
+.messages-list {
+  width: 100%;
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.input-container {
+  flex: 0 0 auto;
+  width: 100%;
+  border-top: 1px solid #1e2130;
+  background: linear-gradient(180deg, transparent 0%, #0f1117 30%);
+}
+
+.empty-state {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  color: #e2e8f0;
+  gap: 1rem;
+
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  p {
+    color: #8892a4;
+    max-width: 420px;
+    margin: 0;
+    font-size: 0.95rem;
+  }
+}
+
+.empty-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(127, 119, 221, 0.25) 0%, rgba(105, 97, 201, 0.15) 100%);
+  border: 1px solid rgba(127, 119, 221, 0.35);
+  margin-bottom: 0.5rem;
+
+  mat-icon {
+    font-size: 2.25rem;
+    width: 2.25rem;
+    height: 2.25rem;
+    color: #9089e8;
+  }
+}
+
+.empty-cta {
+  margin-top: 0.75rem;
+  height: 44px;
+  font-weight: 600;
+  border-radius: 10px !important;
+  background: linear-gradient(135deg, #7f77dd 0%, #6961c9 100%) !important;
+  color: #fff !important;
+
+  mat-icon {
+    margin-right: 0.4rem;
+  }
+}
+
+.msg-skeleton {
+  display: flex;
+  margin: 0.5rem 0;
+
+  &.right {
+    justify-content: flex-end;
+  }
+}
+
+.skel-bubble {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  width: 60%;
+  background: #181b27;
+  border: 1px solid #1e2130;
+  border-radius: 14px;
+  padding: 0.875rem 1rem;
+}
+
+.skel-line {
+  height: 10px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #1e2130 0%, #2a2e44 50%, #1e2130 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}

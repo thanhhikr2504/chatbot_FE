@@ -1,0 +1,202 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import 'highlight.js/styles/github-dark.css';
+
+/* ===== Material design-token overrides for purple/dark theme =====
+ * Builds on the prebuilt "azure-blue" theme (configured in angular.json) and
+ * overrides the M3 system tokens that Material components read at runtime.
+ */
+:root {
+  --mat-sys-background: #0f1117;
+  --mat-sys-surface: #13151f;
+  --mat-sys-surface-container: #181b27;
+  --mat-sys-surface-container-high: #1e2130;
+  --mat-sys-on-surface: #e2e8f0;
+  --mat-sys-on-surface-variant: #8892a4;
+  --mat-sys-outline: #1e2130;
+  --mat-sys-outline-variant: #2a2e44;
+  --mat-sys-primary: #7f77dd;
+  --mat-sys-on-primary: #ffffff;
+  --mat-sys-primary-container: #5d57a3;
+  --mat-sys-on-primary-container: #e1ddf5;
+  --mat-sys-secondary: #9089e8;
+  --mat-sys-on-secondary: #ffffff;
+  --mat-sys-error: #ef4444;
+  --mat-sys-on-error: #ffffff;
+
+  --mdc-filled-button-container-color: #7f77dd;
+  --mdc-filled-button-label-text-color: #ffffff;
+  --mdc-protected-button-container-color: #7f77dd;
+}
+
+/* ===== Base / global reset ===== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #0f1117;
+  color: #e2e8f0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: rgba(127, 119, 221, 0.35);
+  color: #fff;
+}
+
+/* ===== Scrollbars ===== */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: #2a2e44;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3a3f5a;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* ===== Material form field dark overrides ===== */
+.mat-mdc-form-field {
+  width: 100%;
+}
+
+.mat-mdc-form-field .mdc-text-field--outlined {
+  --mdc-outlined-text-field-outline-color: #2a2e44;
+  --mdc-outlined-text-field-hover-outline-color: #4a5070;
+  --mdc-outlined-text-field-focus-outline-color: #7f77dd;
+  --mdc-outlined-text-field-input-text-color: #e2e8f0;
+  --mdc-outlined-text-field-label-text-color: #8892a4;
+  --mdc-outlined-text-field-focus-label-text-color: #9089e8;
+  --mdc-outlined-text-field-caret-color: #7f77dd;
+  --mdc-outlined-text-field-container-shape: 10px;
+}
+
+.mat-mdc-text-field-wrapper {
+  background: rgba(24, 27, 39, 0.45) !important;
+}
+
+/* Prefix icon (plain <mat-icon matPrefix>) — give breathing room either side */
+.mat-mdc-form-field-icon-prefix > .mat-icon {
+  color: #8892a4;
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+  padding: 0 12px;
+  box-sizing: content-box;
+}
+
+/* Suffix can be plain icon OR an icon button (e.g. password toggle) */
+.mat-mdc-form-field-icon-suffix > .mat-icon {
+  color: #8892a4;
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+  padding: 0 12px;
+  box-sizing: content-box;
+}
+
+.mat-mdc-form-field-icon-suffix .mat-mdc-icon-button {
+  color: #8892a4;
+  margin-right: 4px;
+}
+
+.mat-mdc-form-field-icon-suffix .mat-mdc-icon-button .mat-icon {
+  color: inherit;
+}
+
+.mat-mdc-form-field-subscript-wrapper {
+  font-size: 0.75rem;
+}
+
+/* Material button rounded corners */
+.mat-mdc-raised-button,
+.mat-mdc-unelevated-button,
+.mat-mdc-outlined-button,
+.mat-mdc-button {
+  border-radius: 10px !important;
+}
+
+.mat-mdc-icon-button {
+  border-radius: 10px !important;
+}
+
+/* Tooltip */
+.mat-mdc-tooltip {
+  --mdc-plain-tooltip-container-color: #1e2130;
+  --mdc-plain-tooltip-supporting-text-color: #e2e8f0;
+  font-size: 0.75rem !important;
+}
+
+/* Snackbar - error style */
+.error-snackbar {
+  --mdc-snackbar-container-color: #2a1414;
+  --mdc-snackbar-supporting-text-color: #fca5a5;
+  --mat-snack-bar-button-color: #fca5a5;
+}
+
+/* Menu */
+.mat-mdc-menu-panel {
+  background: #181b27 !important;
+  border: 1px solid #1e2130 !important;
+  border-radius: 10px !important;
+}
+
+.mat-mdc-menu-item {
+  color: #e2e8f0 !important;
+
+  .mat-icon {
+    color: #8892a4 !important;
+  }
+
+  &:hover {
+    background: rgba(127, 119, 221, 0.08) !important;
+  }
+}
+
+/* Sidenav */
+.mat-drawer {
+  background: #13151f !important;
+  color: #e2e8f0 !important;
+}
+
+.mat-drawer-content {
+  background: #0f1117 !important;
+  color: #e2e8f0 !important;
+}
+
+/* Spinner inside buttons */
+.mat-mdc-progress-spinner circle {
+  stroke: #fff;
+}
+
+/* Focus outlines (a11y) */
+:focus-visible {
+  outline: 2px solid rgba(127, 119, 221, 0.6);
+  outline-offset: 2px;
+}
+
+/* Mobile breakpoint */
+@media (max-width: 768px) {
+  .messages-list,
+  .input-shell {
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+  }
+}
